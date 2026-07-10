@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loading...</title>
   <link rel="icon" id="favicon" href="">
-  
+
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/lucide@0.407.0/dist/umd/lucide.min.js" as="script">
   <link rel="preload" href="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" as="image">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.407.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -19,247 +19,305 @@
       theme: {
         extend: {
           fontFamily: {
+            display: ['"Baloo 2"', 'sans-serif'],
             sans: ['"Outfit"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            retro: {
-              black: '#0a0a0c', 
-              dark: '#1c1c1e', 
-              card: '#242426', 
-              border: '#3a3a3c', 
-              orange: '#f97316', 
-              light: '#f4f4f5', 
-              gray: '#9ca3af'
+            clay: {
+              bg: '#EFE9FE',
+              bg2: '#F6F2FF',
+              card: '#FBF9FF',
+              ink: '#241B45',
+              sub: '#6E6690',
+              violet: '#7B5CFA',
+              violetDark: '#5B3EDB',
+              coral: '#FF6F5E',
+              coralDark: '#E24E3D',
+              lime: '#B7E44C',
+              limeDark: '#8FBF26',
+              sun: '#FFC93C',
+              sunDark: '#E0A415',
+              sky: '#4FC3E8',
+              skyDark: '#2A9DC4'
             }
-          },
-          boxShadow: {
-            glow: '0 0 30px rgba(249, 115, 22, 0.12)',
-            glowHover: '0 0 45px rgba(249, 115, 22, 0.25)',
-            btn: '0 6px 20px rgba(249, 115, 22, 0.15)',
-            sticker: '0 20px 50px rgba(0, 0, 0, 0.6)'
           }
         }
       }
     }
   </script>
   <style>
-    body {
-      background-color: #0a0a0c;
+    body { background-color: #EFE9FE; }
+
+    .blob-field {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(123,92,250,0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(255,111,94,0.16) 0%, transparent 40%),
+        radial-gradient(circle at 75% 85%, rgba(183,228,76,0.20) 0%, transparent 42%),
+        radial-gradient(circle at 10% 80%, rgba(79,195,232,0.16) 0%, transparent 40%);
     }
-    .grid-bg {
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-      background-size: 20px 20px;
+
+    /* Claymorphism base: soft dual shadow + inner highlight */
+    .clay {
+      background: #FBF9FF;
+      border-radius: 28px;
+      box-shadow:
+        10px 10px 24px rgba(123, 92, 250, 0.16),
+        -10px -10px 22px rgba(255, 255, 255, 0.85),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      border: 1px solid rgba(123, 92, 250, 0.06);
     }
-    .orange-glow-blur {
-      background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+    .clay-inset {
+      box-shadow:
+        inset 6px 6px 14px rgba(123, 92, 250, 0.12),
+        inset -6px -6px 14px rgba(255, 255, 255, 0.7);
     }
-    .text-glow {
-      text-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+
+    /* Puffy pressable buttons (duolingo-esque clay) */
+    .clay-btn {
+      border-radius: 20px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 7px 0 var(--clay-shadow-color), 0 14px 24px rgba(36,27,69,0.18);
     }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    .clay-btn:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--clay-shadow-color), 0 6px 12px rgba(36,27,69,0.14); }
+
+    .btn-violet { --clay-shadow-color: #4C33B8; background: #7B5CFA; }
+    .btn-white { --clay-shadow-color: #D8D2F0; background: #FBF9FF; }
+
+    .blob {
+      border-radius: 62% 38% 55% 45% / 48% 42% 58% 52%;
     }
-    ::-webkit-scrollbar-track {
-      background: #0a0a0c;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #3a3a3c;
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #f97316;
-    }
+
+    .font-display { font-family: 'Baloo 2', sans-serif; }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #EFE9FE; }
+    ::-webkit-scrollbar-thumb { background: #C9BBF8; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7B5CFA; }
+
+    .term-dot { width: 11px; height: 11px; border-radius: 999px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.15); }
   </style>
 </head>
-<body class="bg-retro-black text-stone-200 font-sans grid-bg min-h-screen flex flex-col justify-between selection:bg-retro-orange selection:text-retro-black relative overflow-x-hidden w-full max-w-[100vw]">
+<body class="bg-clay-bg text-clay-ink font-sans min-h-screen flex flex-col selection:bg-clay-violet selection:text-white relative overflow-x-hidden w-full max-w-[100vw]">
 
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] orange-glow-blur pointer-events-none z-0"></div>
-  <div class="absolute bottom-20 -left-40 w-[500px] h-[500px] orange-glow-blur pointer-events-none z-0 opacity-40"></div>
+  <div class="fixed inset-0 blob-field pointer-events-none z-0"></div>
 
-  <div id="page-loader" class="fixed top-0 left-0 w-screen h-screen bg-retro-black z-[9999] flex flex-col items-center justify-center gap-4 transition-all duration-500 ease-out">
+  <div id="page-loader" class="fixed top-0 left-0 w-screen h-screen bg-clay-bg z-[9999] flex flex-col items-center justify-center gap-4 transition-all duration-500 ease-out">
     <div class="relative w-16 h-16 flex items-center justify-center">
-      <div class="absolute inset-0 border-4 border-retro-orange/10 rounded-full animate-pulse"></div>
-      <div class="absolute inset-0 border-4 border-t-retro-orange border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
-      <div class="w-2.5 h-2.5 bg-retro-orange rounded-full animate-pulse shadow-glow"></div>
+      <div class="absolute inset-0 border-[5px] border-clay-violet/15 rounded-full"></div>
+      <div class="absolute inset-0 border-[5px] border-t-clay-violet border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+      <div class="w-3 h-3 bg-clay-coral rounded-full animate-pulse"></div>
     </div>
     <div class="flex flex-col items-center gap-1.5 mt-2">
-      <span class="font-mono text-[10px] tracking-[0.25em] text-white uppercase font-black">CLUTCH ENGINE</span>
-      <span class="font-mono text-[8px] tracking-[0.15em] text-retro-gray uppercase animate-pulse">Initializing Interface...</span>
+      <span class="font-display text-xs tracking-wide text-clay-ink font-bold">Menyiapkan Clay Engine</span>
+      <span class="font-mono text-[9px] tracking-[0.15em] text-clay-sub uppercase animate-pulse">Initializing Interface...</span>
     </div>
   </div>
 
-  <header class="border-b border-retro-border/40 bg-retro-dark/80 sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+  <header class="sticky top-0 z-50 px-4 pt-4">
+    <div class="max-w-6xl mx-auto clay !rounded-3xl px-5 py-3 flex justify-between items-center bg-clay-card/95 backdrop-blur-md">
       <a href="/" class="flex items-center gap-3 group">
-        <img id="nav-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-9 h-9 rounded-xl border-2 border-retro-border hover:border-retro-orange transition-all duration-300 object-cover shadow-lg">
-        <span id="web-title" class="font-sans font-black tracking-wider text-white text-base group-hover:text-retro-orange transition-all duration-300 flex items-center gap-2">
-          Clutch <span class="text-retro-orange font-light">//</span> <span class="text-retro-light font-bold">Api</span>
+        <img id="nav-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-10 h-10 rounded-2xl border-2 border-white object-cover clay !rounded-2xl !p-0 group-hover:-rotate-6 transition-transform duration-300">
+        <span id="web-title" class="font-display font-bold text-clay-ink text-lg group-hover:text-clay-violet transition-all duration-300 flex items-center gap-2">
+          Clutch <span class="text-clay-coral font-black">//</span> <span class="text-clay-ink">Api</span>
         </span>
       </a>
-      
-      <div class="flex items-center gap-2 font-mono text-[9px] bg-retro-orange/10 border border-retro-orange/20 px-3 py-1.5 rounded-lg text-retro-light font-extrabold tracking-wider">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>Gateway: Online</span>
+
+      <nav class="hidden md:flex items-center gap-1.5 font-display text-sm font-semibold">
+        <a href="/" class="px-4 py-2 rounded-2xl bg-clay-violet/10 text-clay-violet">Beranda</a>
+        <a href="/playground" class="px-4 py-2 rounded-2xl text-clay-sub hover:bg-clay-violet/10 hover:text-clay-violet transition-colors">Playground</a>
+        <a href="/api" class="px-4 py-2 rounded-2xl text-clay-sub hover:bg-clay-violet/10 hover:text-clay-violet transition-colors">API Docs</a>
+      </nav>
+
+      <div class="flex items-center gap-2 font-mono text-[10px] bg-clay-lime/25 px-3 py-2 rounded-2xl text-clay-limeDark font-bold clay-inset">
+        <span class="w-2 h-2 rounded-full bg-clay-limeDark animate-pulse"></span>
+        <span class="hidden sm:inline">Gateway: Online</span>
+        <span class="sm:hidden">Live</span>
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-6 py-12 md:py-24 flex-grow w-full flex flex-col justify-center gap-20 relative z-10">
-    
-    <div class="flex flex-col items-center text-center max-w-4xl mx-auto gap-8 my-6">
-      
-      <div class="inline-flex items-center gap-2 bg-retro-orange/10 border border-retro-orange/20 px-4 py-2 rounded-full font-mono text-[9px] text-retro-light tracking-wider">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-retro-orange"></i>
-        <span>Stable api endpoints v1.0</span>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 flex-grow w-full flex flex-col gap-24 relative z-10">
+
+    <section class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="flex flex-col gap-7">
+        <div class="inline-flex w-fit items-center gap-2 bg-clay-sun/30 px-4 py-2 rounded-full font-mono text-[10px] text-clay-sunDark font-bold tracking-wide clay-inset">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Stable API endpoints v1.0</span>
+        </div>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.08] text-clay-ink">
+          API playful buat <span class="text-clay-violet">ide gilamu,</span> jalan tanpa drama.
+        </h1>
+
+        <p class="text-clay-sub text-base leading-relaxed max-w-lg">
+          Bikin sticker, mockup chat premium, sampai asupan feed video — tinggal panggil satu endpoint. Tanpa database lambat, tanpa setup ribet, langsung ngebut dari browser kamu.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="/playground" class="clay-btn btn-violet inline-flex items-center gap-3 text-white font-display font-bold text-sm px-8 py-4">
+            <i data-lucide="terminal" class="w-5 h-5"></i>
+            <span>Coba Playground</span>
+          </a>
+          <a href="/api" class="clay-btn btn-white inline-flex items-center gap-3 text-clay-ink font-display font-bold text-sm px-8 py-4">
+            <i data-lucide="book-open" class="w-5 h-5 text-clay-coral"></i>
+            <span>Lihat Dokumentasi</span>
+          </a>
+        </div>
       </div>
-      
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] font-sans">
-        The ultimate <span class="text-retro-orange font-mono font-medium drop-shadow-glow text-glow">Api Hub</span> for creative codelabs
-      </h1>
-      
-      <p class="text-stone-400 text-sm leading-relaxed max-w-2xl font-sans">
-        Integrasi fungsional super lancar tanpa basis data lambat. Nikmati pembuatan sticker, visual chat mockup premium, dan asupan feed video dengan responsivitas asinkron mutakhir langsung dari browser Anda.
-      </p>
-      
-      <div class="flex flex-wrap justify-center items-center gap-4 mt-4">
-        <a href="/playground" class="inline-flex items-center gap-4 bg-retro-orange hover:bg-white text-retro-black font-mono font-black text-sm uppercase tracking-[0.2em] px-12 py-5 rounded-2xl transition-all duration-300 shadow-btn hover:shadow-glowHover transform hover:-translate-y-1 hover:scale-105 active:translate-y-0 animate-pulse">
-          <span>Get API</span>
-          <i data-lucide="terminal" class="w-5 h-5"></i>
+
+      <div class="relative">
+        <div class="absolute -top-8 -right-6 w-24 h-24 bg-clay-sun/50 blob -z-10"></div>
+        <div class="absolute -bottom-10 -left-8 w-32 h-32 bg-clay-sky/40 blob -z-10"></div>
+
+        <div class="clay !bg-[#2A2440] !rounded-3xl p-5 text-left relative">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="term-dot bg-clay-coral"></span>
+            <span class="term-dot bg-clay-sun"></span>
+            <span class="term-dot bg-clay-lime"></span>
+            <span class="ml-2 font-mono text-[10px] text-white/40">clutch-api ~ request</span>
+          </div>
+          <pre class="font-mono text-[12px] leading-relaxed text-clay-lime overflow-x-auto"><code><span class="text-white/40"># kirim request dalam sekejap</span>
+curl -X GET \
+  <span class="text-clay-sky">"https://clutch-api.run.app/api/brat?text=Halo"</span></code></pre>
+          <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="font-mono text-[10px] text-white/40">200 OK · <span id="hero-latency">~45ms</span></span>
+            <button onclick="copyPrevCode()" class="flex items-center gap-1.5 font-mono text-[10px] text-white bg-white/10 hover:bg-clay-violet px-3 py-1.5 rounded-xl transition-colors">
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="font-mono text-[10px] font-bold text-clay-coral tracking-widest uppercase">Statistik realtime //</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-clay-ink mt-1">Kinerja server, apa adanya</h2>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-mono text-clay-sub">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5 animate-spin text-clay-violet"></i>
+          <span>Sinkron otomatis dari core monitoring</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="clay p-6 hover:-translate-y-1 transition-transform duration-300">
+          <div class="w-10 h-10 rounded-2xl bg-clay-lime/30 flex items-center justify-center mb-4">
+            <i data-lucide="activity" class="w-5 h-5 text-clay-limeDark"></i>
+          </div>
+          <div class="font-display text-2xl sm:text-3xl font-bold text-clay-ink" id="stat-uptime">99.99%</div>
+          <p class="text-[11px] text-clay-sub mt-1 font-medium">Uptime gateway</p>
+        </div>
+
+        <div class="clay p-6 hover:-translate-y-1 transition-transform duration-300">
+          <div class="w-10 h-10 rounded-2xl bg-clay-sun/30 flex items-center justify-center mb-4">
+            <i data-lucide="zap" class="w-5 h-5 text-clay-sunDark"></i>
+          </div>
+          <div class="font-display text-2xl sm:text-3xl font-bold text-clay-ink">&lt; 45ms</div>
+          <p class="text-[11px] text-clay-sub mt-1 font-medium">Rata-rata latency</p>
+        </div>
+
+        <div class="clay p-6 hover:-translate-y-1 transition-transform duration-300">
+          <div class="w-10 h-10 rounded-2xl bg-clay-sky/30 flex items-center justify-center mb-4">
+            <i data-lucide="layers" class="w-5 h-5 text-clay-skyDark"></i>
+          </div>
+          <div class="font-display text-2xl sm:text-3xl font-bold text-clay-ink" id="stat-endpoints">--</div>
+          <p class="text-[11px] text-clay-sub mt-1 font-medium">Endpoint aktif</p>
+        </div>
+
+        <div class="clay p-6 hover:-translate-y-1 transition-transform duration-300">
+          <div class="w-10 h-10 rounded-2xl bg-clay-coral/25 flex items-center justify-center mb-4">
+            <i data-lucide="database" class="w-5 h-5 text-clay-coralDark"></i>
+          </div>
+          <div class="font-display text-2xl sm:text-3xl font-bold text-clay-ink">Db-free</div>
+          <p class="text-[11px] text-clay-sub mt-1 font-medium">Memori instan, no drama</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="font-mono text-[10px] font-bold text-clay-sky tracking-widest uppercase">Katalog endpoint //</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-clay-ink mt-1">Kategori yang siap dipakai</h2>
+        </div>
+        <a href="/api" class="font-display text-sm font-bold text-clay-violet hover:text-clay-violetDark flex items-center gap-1.5">
+          Lihat semua <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
 
-    </div>
-
-    <div class="border-t border-retro-border/30 pt-16">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-        <div>
-          <span class="font-mono text-[9px] font-bold text-retro-orange tracking-widest">Laporan realtime gateway //</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1 tracking-tight">Kinerja server & statistik live</h2>
-        </div>
-        <div class="flex items-center gap-1.5 text-[10px] font-mono text-retro-gray">
-          <i data-lucide="refresh-cw" class="w-3.5 h-3.5 animate-spin text-retro-orange"></i>
-          <span>Autosync stats via core monitoring</span>
+      <div id="category-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="clay p-6 animate-pulse">
+          <div class="w-10 h-10 rounded-2xl bg-clay-violet/15 mb-4"></div>
+          <div class="h-4 w-2/3 bg-clay-violet/10 rounded mb-2"></div>
+          <div class="h-3 w-1/2 bg-clay-violet/10 rounded"></div>
         </div>
       </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-retro-dark border border-retro-border/50 p-6 rounded-2xl shadow-lg hover:border-retro-orange/30 hover:shadow-glow/10 transition-all duration-300 group">
-          <div class="flex justify-between items-start mb-4">
-            <span class="font-mono text-[9px] text-retro-gray tracking-widest font-black">Gate state</span>
-            <span class="flex items-center gap-1 text-[8px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-md font-bold">
-              <span class="w-1 h-1 rounded-full bg-emerald-400 animate-ping"></span>
-              Online
-            </span>
-          </div>
-          <div class="flex items-baseline gap-1.5 mt-2">
-            <span class="text-3xl font-bold font-mono text-white group-hover:text-retro-orange transition-colors">99.99%</span>
-            <span class="text-[10px] text-retro-gray font-mono">Uptime</span>
-          </div>
-          <p class="text-[11px] text-stone-500 mt-2 font-mono">Gateway server aktif penuh asinkron</p>
-        </div>
-        
-        <div class="bg-retro-dark border border-retro-border/50 p-6 rounded-2xl shadow-lg hover:border-retro-orange/30 hover:shadow-glow/10 transition-all duration-300 group">
-          <div class="flex justify-between items-start mb-4">
-            <span class="font-mono text-[9px] text-retro-gray tracking-widest font-black">Velocity</span>
-            <i data-lucide="zap" class="w-4.5 h-4.5 text-retro-orange group-hover:scale-110 transition-transform"></i>
-          </div>
-          <div class="flex items-baseline gap-1.5 mt-2">
-            <span class="text-3xl font-bold font-mono text-white group-hover:text-retro-orange transition-colors">&lt; 45ms</span>
-            <span class="text-[10px] text-retro-gray font-mono">Latency</span>
-          </div>
-          <p class="text-[11px] text-stone-500 mt-2 font-mono">Render canvas & video asinkron cepat</p>
-        </div>
-        
-        <div class="bg-retro-dark border border-retro-border/50 p-6 rounded-2xl shadow-lg hover:border-retro-orange/30 hover:shadow-glow/10 transition-all duration-300 group">
-          <div class="flex justify-between items-start mb-4">
-            <span class="font-mono text-[9px] text-retro-gray tracking-widest font-black">Core engine</span>
-            <i data-lucide="cpu" class="w-4.5 h-4.5 text-retro-orange group-hover:scale-110 transition-transform"></i>
-          </div>
-          <div class="flex items-baseline gap-1.5 mt-2">
-            <span class="text-3xl font-bold font-mono text-white group-hover:text-retro-orange transition-colors">v1.0</span>
-            <span class="text-[10px] text-retro-gray font-mono">Clutch</span>
-          </div>
-          <p class="text-[11px] text-stone-500 mt-2 font-mono">Plugin-hotloaded core endpoints</p>
-        </div>
-        
-        <div class="bg-retro-dark border border-retro-border/50 p-6 rounded-2xl shadow-lg hover:border-retro-orange/30 hover:shadow-glow/10 transition-all duration-300 group">
-          <div class="flex justify-between items-start mb-4">
-            <span class="font-mono text-[9px] text-retro-gray tracking-widest font-black">Storage architecture</span>
-            <span class="text-[8px] font-mono text-retro-orange bg-retro-orange/10 border border-retro-orange/20 px-2 py-0.5 rounded-md font-bold">Secure</span>
-          </div>
-          <div class="flex items-baseline gap-1.5 mt-2">
-            <span class="text-3xl font-bold font-mono text-white group-hover:text-retro-orange transition-colors font-sans">None</span>
-            <span class="text-[10px] text-retro-gray font-mono">Db free</span>
-          </div>
-          <p class="text-[11px] text-stone-500 mt-2 font-mono">Memori asinkron instan tanpa DB lambat</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
   </main>
 
-  <footer class="border-t border-retro-border bg-retro-dark/95 backdrop-blur-md pt-14 pb-8 relative z-10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10 pb-10 border-b border-retro-border/30">
-        
+  <footer class="px-4 pb-6 pt-4 relative z-10">
+    <div class="max-w-6xl mx-auto clay !rounded-[32px] p-8 sm:p-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10 pb-10 border-b-2 border-dashed border-clay-violet/15">
+
         <div class="md:col-span-5 flex flex-col gap-4">
           <div class="flex items-center gap-3">
-            <img id="footer-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-7 h-7 rounded-lg border border-retro-orange/30 object-cover shadow-md">
-            <span id="footer-brand-title" class="font-mono font-bold text-white uppercase tracking-wider text-xs">Clutch Api</span>
+            <img id="footer-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-9 h-9 rounded-xl object-cover clay !rounded-xl !p-0">
+            <span id="footer-brand-title" class="font-display font-bold text-clay-ink text-sm">Clutch Api</span>
           </div>
-          <p class="text-xs text-stone-400 leading-relaxed max-w-sm">
-            Platform integrasi API inovatif dengan kinerja modular yang andal. Menghubungkan imajinasi digital Anda dengan eksekusi kode backend mutakhir secara instan.
+          <p class="text-xs text-clay-sub leading-relaxed max-w-sm">
+            Platform integrasi API yang ringan dan playful. Menghubungkan ide random kamu dengan eksekusi backend yang cepat, instan dari browser.
           </p>
-          <span class="text-[10px] font-mono text-retro-gray mt-1">
-            Build with Craftsmanship by <b id="footer-creator" class="text-white">alip ai</b>
+          <span class="text-[10px] font-mono text-clay-sub mt-1">
+            Dibuat dengan sepenuh clay oleh <b id="footer-creator" class="text-clay-ink">alip ai</b>
           </span>
         </div>
 
         <div class="md:col-span-7 flex flex-col justify-between">
           <div>
-            <span class="block font-mono text-[10px] text-retro-light font-bold tracking-widest mb-4">Hubungi & ikuti kami</span>
-            
+            <span class="block font-display text-sm text-clay-ink font-bold mb-4">Hubungi &amp; ikuti kami</span>
+
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <a id="footer-wa" target="_blank" href="#" class="flex items-center gap-2 bg-retro-black/50 hover:bg-emerald-500/10 border border-retro-border hover:border-emerald-500/30 p-2.5 rounded-lg text-xs transition-all group text-stone-300 hover:text-white">
-                <i data-lucide="message-square" class="w-4.5 h-4.5 text-emerald-500 group-hover:scale-105 transition-transform"></i>
+              <a id="footer-wa" target="_blank" href="#" class="flex items-center gap-2 bg-clay-lime/20 hover:bg-clay-lime/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
+                <i data-lucide="message-square" class="w-4.5 h-4.5 text-clay-limeDark group-hover:scale-110 transition-transform"></i>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-retro-gray leading-none">WhatsApp</span>
+                  <span class="font-mono text-[8px] text-clay-sub leading-none">WhatsApp</span>
                   <span class="font-semibold text-[10px]">Chat Admin</span>
                 </div>
               </a>
-              
-              <a id="footer-tg" target="_blank" href="#" class="flex items-center gap-2 bg-retro-black/50 hover:bg-sky-500/10 border border-retro-border hover:border-sky-500/30 p-2.5 rounded-lg text-xs transition-all group text-stone-300 hover:text-white">
-                <i data-lucide="send" class="w-4.5 h-4.5 text-sky-400 group-hover:scale-105 transition-transform"></i>
+
+              <a id="footer-tg" target="_blank" href="#" class="flex items-center gap-2 bg-clay-sky/20 hover:bg-clay-sky/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
+                <i data-lucide="send" class="w-4.5 h-4.5 text-clay-skyDark group-hover:scale-110 transition-transform"></i>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-retro-gray leading-none">Telegram</span>
+                  <span class="font-mono text-[8px] text-clay-sub leading-none">Telegram</span>
                   <span class="font-semibold text-[10px]">Hubungi Telegram</span>
                 </div>
               </a>
 
-              <a id="footer-channel" target="_blank" href="#" class="flex items-center gap-2 bg-retro-black/50 hover:bg-retro-orange/10 border border-retro-border hover:border-retro-orange/30 p-2.5 rounded-lg text-xs transition-all group text-stone-300 hover:text-white">
-                <i data-lucide="radio" class="w-4.5 h-4.5 text-retro-orange group-hover:scale-105 transition-transform"></i>
+              <a id="footer-channel" target="_blank" href="#" class="flex items-center gap-2 bg-clay-violet/15 hover:bg-clay-violet/25 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
+                <i data-lucide="radio" class="w-4.5 h-4.5 text-clay-violet group-hover:scale-110 transition-transform"></i>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-retro-gray leading-none">Saluran WA</span>
+                  <span class="font-mono text-[8px] text-clay-sub leading-none">Saluran WA</span>
                   <span class="font-semibold text-[10px]">Join Channel</span>
                 </div>
               </a>
 
-              <a id="footer-ig" target="_blank" href="#" class="flex items-center gap-2 bg-retro-black/50 hover:bg-pink-500/10 border border-retro-border hover:border-pink-500/30 p-2.5 rounded-lg text-xs transition-all group text-stone-300 hover:text-white">
-                <i data-lucide="instagram" class="w-4.5 h-4.5 text-pink-500 group-hover:scale-105 transition-transform"></i>
+              <a id="footer-ig" target="_blank" href="#" class="flex items-center gap-2 bg-clay-coral/20 hover:bg-clay-coral/30 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
+                <i data-lucide="instagram" class="w-4.5 h-4.5 text-clay-coralDark group-hover:scale-110 transition-transform"></i>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-retro-gray leading-none">Instagram</span>
+                  <span class="font-mono text-[8px] text-clay-sub leading-none">Instagram</span>
                   <span class="font-semibold text-[10px]">Follow Updates</span>
                 </div>
               </a>
 
-              <a id="footer-email" href="#" class="col-span-1 sm:col-span-2 flex items-center gap-2 bg-retro-black/50 hover:bg-amber-500/10 border border-retro-border hover:border-amber-500/30 p-2.5 rounded-lg text-xs transition-all group text-stone-300 hover:text-white">
-                <i data-lucide="mail" class="w-4.5 h-4.5 text-amber-500 group-hover:scale-105 transition-transform"></i>
+              <a id="footer-email" href="#" class="col-span-1 sm:col-span-2 flex items-center gap-2 bg-clay-sun/25 hover:bg-clay-sun/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
+                <i data-lucide="mail" class="w-4.5 h-4.5 text-clay-sunDark group-hover:scale-110 transition-transform"></i>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-retro-gray leading-none">Email Resmi</span>
+                  <span class="font-mono text-[8px] text-clay-sub leading-none">Email Resmi</span>
                   <span class="font-semibold text-[10px] truncate" id="footer-email-txt">admin@example.com</span>
                 </div>
               </a>
@@ -269,16 +327,16 @@
 
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-retro-gray">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-clay-sub">
         <div>
           <span>© 2026</span>
-          <span class="text-retro-orange font-bold">Clutch Api Hub</span>
+          <span class="text-clay-violet font-bold">Clutch Api Hub</span>
           <span>• Hak Cipta Dilindungi.</span>
         </div>
         <div class="flex gap-4 font-bold">
-          <a href="/" class="text-retro-orange hover:text-white transition-colors">Home</a>
-          <a href="/playground" class="hover:text-retro-orange transition-colors">Playground</a>
-          <a href="/api" class="hover:text-retro-orange transition-colors">API Console</a>
+          <a href="/" class="text-clay-violet hover:text-clay-coral transition-colors">Home</a>
+          <a href="/playground" class="hover:text-clay-violet transition-colors">Playground</a>
+          <a href="/api" class="hover:text-clay-violet transition-colors">API Console</a>
         </div>
       </div>
     </div>
@@ -286,7 +344,14 @@
 
   <script>
     let activeWebName = 'Clutch Api';
-    
+    const categoryAccents = [
+      { chip: 'bg-clay-violet/15', icon: 'text-clay-violet' },
+      { chip: 'bg-clay-coral/20', icon: 'text-clay-coralDark' },
+      { chip: 'bg-clay-lime/25', icon: 'text-clay-limeDark' },
+      { chip: 'bg-clay-sky/25', icon: 'text-clay-skyDark' },
+      { chip: 'bg-clay-sun/30', icon: 'text-clay-sunDark' }
+    ];
+
     function copyPrevCode() {
       const code = `curl -X GET "https://clutch-api.run.app/api/brat?text=${encodeURIComponent(activeWebName)}"`;
       navigator.clipboard.writeText(code).then(() => {
@@ -298,56 +363,91 @@
     fetch('/set')
       .then(res => res.json())
       .then(settings => {
-        document.title = settings.apiTitle || "Retro API Hub";
+        document.title = settings.apiTitle || "Clutch Api Hub";
         const favEl = document.getElementById('favicon');
         if (favEl) favEl.href = "/api/logo-proxy";
-        
+
         activeWebName = settings.webName || 'Clutch Api';
-        
-        // Update sticker text dynamically
-        const bratTextEl = document.getElementById('brat-dynamic-text');
-        if (bratTextEl) {
-          bratTextEl.innerText = activeWebName;
-        }
 
         const titleEl = document.getElementById('web-title');
         if (titleEl) {
-          titleEl.innerHTML = activeWebName.replace(/\s+/g, ' <span class="text-retro-orange font-light">//</span> ');
+          titleEl.innerHTML = activeWebName.replace(/\s+/g, ' <span class="text-clay-coral font-black">//</span> ');
         }
-        
+
         const creatorEl = document.getElementById('footer-creator');
         if (creatorEl) creatorEl.innerText = settings.creatorName || 'alip ai';
-        
+
         const footerBrandEl = document.getElementById('footer-brand-title');
         if (footerBrandEl) footerBrandEl.innerText = activeWebName;
-        
+
         const logoImg = document.getElementById('nav-logo-img');
         if (logoImg) logoImg.src = "/api/logo-proxy";
-        
+
         const footerLogoImg = document.getElementById('footer-logo-img');
         if (footerLogoImg) footerLogoImg.src = "/api/logo-proxy";
 
         const footerWa = document.getElementById('footer-wa');
         if (footerWa) footerWa.href = settings.whatsappLink || '#';
-        
+
         const footerIg = document.getElementById('footer-ig');
         if (footerIg) footerIg.href = settings.instagramLink || '#';
-        
+
         const footerTg = document.getElementById('footer-tg');
         if (footerTg) footerTg.href = settings.telegramLink || '#';
-        
+
         const footerChannel = document.getElementById('footer-channel');
         if (footerChannel) footerChannel.href = settings.whatsappChannelLink || '#';
-        
+
         const footerEmail = document.getElementById('footer-email');
         if (footerEmail) footerEmail.href = settings.emailAddress ? `mailto:${settings.emailAddress}` : '#';
-        
+
         const footerEmailTxt = document.getElementById('footer-email-txt');
         if (footerEmailTxt) footerEmailTxt.innerText = settings.emailAddress || 'admin@example.com';
       })
       .catch(err => console.error("Error fetching settings:", err))
       .finally(() => {
         setTimeout(dismissLoader, 300);
+      });
+
+    // Live stats
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        const el = document.getElementById('stat-endpoints');
+        if (el && data.totalEndpoints) el.innerText = data.totalEndpoints;
+      })
+      .catch(() => {});
+
+    // Endpoint category preview
+    fetch('/endpoints')
+      .then(res => res.json())
+      .then(data => {
+        const grid = document.getElementById('category-grid');
+        if (!grid || !data.endpoints) return;
+        const categories = Object.keys(data.endpoints);
+        if (!categories.length) {
+          grid.innerHTML = `<div class="clay p-6 sm:col-span-2 lg:col-span-3 text-center text-clay-sub text-sm">Belum ada kategori endpoint yang terdaftar.</div>`;
+          return;
+        }
+        grid.innerHTML = categories.map((cat, i) => {
+          const count = data.endpoints[cat].length;
+          const accent = categoryAccents[i % categoryAccents.length];
+          return `
+            <a href="/api" class="clay p-6 flex flex-col gap-3 hover:-translate-y-1 transition-transform duration-300">
+              <div class="w-10 h-10 rounded-2xl ${accent.chip} flex items-center justify-center">
+                <i data-lucide="folder-code" class="w-5 h-5 ${accent.icon}"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-clay-ink capitalize">${cat}</h3>
+                <p class="text-[11px] text-clay-sub font-mono mt-0.5">${count} endpoint tersedia</p>
+              </div>
+            </a>`;
+        }).join('');
+        lucide.createIcons();
+      })
+      .catch(() => {
+        const grid = document.getElementById('category-grid');
+        if (grid) grid.innerHTML = `<div class="clay p-6 sm:col-span-2 lg:col-span-3 text-center text-clay-sub text-sm">Gagal memuat kategori endpoint.</div>`;
       });
 
     function dismissLoader() {
