@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playground - Clutch API Hub</title>
   <link rel="icon" id="favicon" href="">
-  
+
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/lucide@0.407.0/dist/umd/lucide.min.js" as="script">
   <link rel="preload" href="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" as="image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.407.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -20,169 +20,123 @@
       theme: {
         extend: {
           fontFamily: {
+            sans: ['"Inter"', 'sans-serif'],
             display: ['"Baloo 2"', 'sans-serif'],
-            sans: ['"Outfit"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            clay: {
-              bg: '#EFE9FE',
-              bg2: '#F6F2FF',
-              card: '#FBF9FF',
-              ink: '#241B45',
-              sub: '#6E6690',
-              violet: '#7B5CFA',
-              violetDark: '#5B3EDB',
-              coral: '#FF6F5E',
-              coralDark: '#E24E3D',
-              lime: '#B7E44C',
-              limeDark: '#8FBF26',
-              sun: '#FFC93C',
-              sunDark: '#E0A415',
-              sky: '#4FC3E8',
-              skyDark: '#2A9DC4'
-            }
+            ink: '#15171B',
+            paper: '#F5F2EA',
+          },
+          boxShadow: {
+            hard: '6px 6px 0 0 #15171B',
+            hardSm: '3px 3px 0 0 #15171B',
+            hardLg: '9px 9px 0 0 #15171B',
           }
         }
       }
     }
   </script>
   <style>
-    body { background-color: #EFE9FE; }
-    .blob-field {
-      background:
-        radial-gradient(circle at 15% 20%, rgba(123,92,250,0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(255,111,94,0.16) 0%, transparent 40%),
-        radial-gradient(circle at 75% 85%, rgba(183,228,76,0.20) 0%, transparent 42%),
-        radial-gradient(circle at 10% 80%, rgba(79,195,232,0.16) 0%, transparent 40%);
+    body { background-color: #F5F2EA; }
+    .dot-bg {
+      background-image: radial-gradient(rgba(21,23,27,0.10) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
     }
-    .clay {
-      background: #FBF9FF;
-      border-radius: 28px;
-      box-shadow:
-        10px 10px 24px rgba(123, 92, 250, 0.16),
-        -10px -10px 22px rgba(255, 255, 255, 0.85),
-        inset 0 1px 0 rgba(255,255,255,0.6);
-      border: 1px solid rgba(123, 92, 250, 0.06);
-    }
-    .clay-inset {
-      box-shadow:
-        inset 6px 6px 14px rgba(123, 92, 250, 0.12),
-        inset -6px -6px 14px rgba(255, 255, 255, 0.7);
-    }
-    .clay-btn {
-      border-radius: 20px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      box-shadow: 0 7px 0 var(--clay-shadow-color), 0 14px 24px rgba(36,27,69,0.18);
-    }
-    .clay-btn:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--clay-shadow-color), 0 6px 12px rgba(36,27,69,0.14); }
-    .btn-violet { --clay-shadow-color: #4C33B8; background: #7B5CFA; }
-    .btn-white { --clay-shadow-color: #D8D2F0; background: #FBF9FF; }
-    .font-display { font-family: 'Baloo 2', sans-serif; }
+    .blob { filter: blur(60px); opacity: 0.5; }
+    .press { transition: transform 120ms ease, box-shadow 120ms ease; }
+    .press:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 0 #15171B !important; }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #EFE9FE; }
-    ::-webkit-scrollbar-thumb { background: #C9BBF8; border-radius: 8px; }
-    ::-webkit-scrollbar-thumb:hover { background: #7B5CFA; }
-    .term-dot { width: 11px; height: 11px; border-radius: 999px; box-shadow: inset 0 1px 1px rgba(0,0,0,0.15); }
-
-    .bg-clay-card { border-radius: 24px !important; box-shadow: 8px 8px 20px rgba(123,92,250,0.14), -8px -8px 18px rgba(255,255,255,0.8) !important; border-color: transparent !important; }
+    ::-webkit-scrollbar-track { background: #F5F2EA; }
+    ::-webkit-scrollbar-thumb { background: #15171B; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #FF7A30; }
   </style>
 </head>
-<body class="bg-clay-bg text-clay-ink font-sans blob-field min-h-screen flex flex-col justify-between selection:bg-clay-violet selection:text-clay-bg relative overflow-x-hidden w-full max-w-[100vw]">
+<body class="font-sans text-ink dot-bg min-h-screen flex flex-col justify-between selection:bg-[#FFD84D] selection:text-ink relative overflow-x-hidden w-full max-w-[100vw]">
 
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blob-field pointer-events-none z-0"></div>
-  <div class="absolute bottom-10 -right-40 w-[400px] h-[400px] blob-field pointer-events-none z-0 opacity-50"></div>
+  <div class="absolute top-10 -right-32 w-[420px] h-[420px] rounded-full bg-violet-300 blob pointer-events-none z-0"></div>
+  <div class="absolute bottom-0 -left-24 w-[380px] h-[380px] rounded-full bg-emerald-300 blob pointer-events-none z-0"></div>
 
-  <div id="page-loader" class="fixed top-0 left-0 w-screen h-screen bg-clay-bg z-[9999] flex flex-col items-center justify-center gap-4 transition-all duration-500 ease-out">
-    <div class="relative w-16 h-16 flex items-center justify-center">
-      <div class="absolute inset-0 border-[5px] border-clay-violet/15 rounded-full"></div>
-      <div class="absolute inset-0 border-[5px] border-t-clay-violet border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
-      <div class="w-3 h-3 bg-clay-coral rounded-full animate-pulse"></div>
+  <div id="page-loader" class="fixed top-0 left-0 w-screen h-screen bg-paper z-[9999] flex flex-col items-center justify-center gap-5 transition-all duration-500 ease-out">
+    <div class="relative w-16 h-16 flex items-center justify-center bg-white border-[3px] border-ink rounded-2xl shadow-hard">
+      <div class="absolute inset-0 border-4 border-t-[#FF7A30] border-r-transparent border-b-transparent border-l-transparent rounded-2xl animate-spin"></div>
+      <div class="w-3 h-3 bg-[#FF7A30] rounded-full animate-pulse"></div>
     </div>
-    <div class="flex flex-col items-center gap-1.5 mt-2">
-      <span class="font-display text-xs tracking-wide text-clay-ink font-bold">Menyiapkan Clay Engine</span>
-      <span class="font-mono text-[9px] tracking-[0.15em] text-clay-sub uppercase animate-pulse">Initializing Interface...</span>
+    <div class="flex flex-col items-center gap-1.5 mt-1">
+      <span class="font-display text-sm tracking-wide text-ink font-bold">Clutch engine</span>
+      <span class="font-mono text-[9px] tracking-[0.15em] text-ink/50 animate-pulse">Memuat sandbox aman...</span>
     </div>
   </div>
 
-  <header class="sticky top-0 z-50 px-4 pt-4">
-    <div class="max-w-6xl mx-auto clay !rounded-3xl px-5 py-3 flex justify-between items-center bg-clay-card/95 backdrop-blur-md">
+  <header class="sticky top-4 z-50 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto bg-white border-[3px] border-ink rounded-2xl md:rounded-3xl shadow-hard px-5 py-3.5 flex justify-between items-center">
       <a href="/" class="flex items-center gap-3 group">
-        <img id="nav-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-10 h-10 rounded-2xl border-2 border-white object-cover clay !rounded-2xl !p-0 group-hover:-rotate-6 transition-transform duration-300">
-        <span id="web-title" class="font-display font-bold text-clay-ink text-lg group-hover:text-clay-violet transition-all duration-300 flex items-center gap-2">
-          Clutch <span class="text-clay-coral font-black">//</span> <span class="text-clay-ink">Api</span>
+        <img id="nav-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-10 h-10 rounded-xl border-[2.5px] border-ink object-cover">
+        <span id="web-title" class="font-display font-bold text-ink text-base md:text-lg flex items-center gap-2">
+          Clutch <span class="text-[#FF7A30]">//</span> <span>Api</span>
         </span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-1.5 font-display text-sm font-semibold">
-        <a href="/" class="px-4 py-2 rounded-2xl text-clay-sub hover:bg-clay-violet/10 hover:text-clay-violet transition-colors">Beranda</a>
-        <a href="/playground" class="px-4 py-2 rounded-2xl bg-clay-violet/10 text-clay-violet">Playground</a>
-        <a href="/api" class="px-4 py-2 rounded-2xl text-clay-sub hover:bg-clay-violet/10 hover:text-clay-violet transition-colors">API Docs</a>
-      </nav>
-
-      <div class="flex items-center gap-2 font-mono text-[10px] bg-clay-lime/25 px-3 py-2 rounded-2xl text-clay-limeDark font-bold clay-inset">
-        <span class="w-2 h-2 rounded-full bg-clay-limeDark animate-pulse"></span>
-        <span class="hidden sm:inline">Gateway: Online</span>
-        <span class="sm:hidden">Live</span>
+      <div class="flex items-center gap-1.5 font-mono text-[10px] bg-emerald-200 border-[2.5px] border-ink px-3 py-1.5 rounded-full font-bold text-ink">
+        <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+        <span class="hidden sm:inline">Gateway:</span> Online
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-6 py-10 flex-grow w-full relative z-10 flex flex-col gap-8">
-    
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 flex-grow w-full relative z-10 flex flex-col gap-8">
+
     <div class="flex justify-start items-center">
-      <a href="/" class="inline-flex items-center gap-2 bg-clay-card border border-clay-violet/25 hover:border-clay-violet/50 text-clay-ink/75 hover:text-clay-violet font-mono font-black text-[9px] tracking-[0.15em] px-5 py-3 rounded-xl transition-all duration-300">
-        <i data-lucide="arrow-left" class="w-4 h-4 text-clay-violet animate-pulse"></i>
+      <a href="/" class="press inline-flex items-center gap-2 bg-white border-[2.5px] border-ink text-ink font-mono font-bold text-[10px] tracking-widest px-5 py-3 rounded-xl shadow-hardSm">
+        <i data-lucide="arrow-left" class="w-4 h-4 text-[#FF7A30]"></i>
         <span>Kembali ke home</span>
       </a>
     </div>
-    
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-clay-violet/30 pb-10">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
       <div class="flex flex-col gap-2">
-        <div class="inline-flex items-center gap-2 bg-clay-violet/10 border border-clay-violet/20 px-3 py-1 rounded-full font-mono text-[9px] text-clay-ink tracking-widest self-start">
+        <div class="inline-flex items-center gap-2 bg-white border-[2.5px] border-ink px-3 py-1.5 rounded-full font-mono text-[9px] font-bold text-ink self-start shadow-hardSm">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
           <span>Live playground</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-clay-ink font-sans">
-          Api <span class="text-clay-violet font-mono font-medium">Playground</span>
+        <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">
+          Api <span class="inline-block bg-violet-300 border-[3px] border-ink px-3 py-0.5 rounded-2xl rotate-[-1.5deg] shadow-hardSm">Playground</span>
         </h1>
-        <p class="text-clay-sub text-sm max-w-xl font-sans">
+        <p class="text-ink/70 text-sm max-w-xl font-medium">
           Eksplorasi modul, saring plugin fungsional, dan luncurkan konsol pengujian interaktif kami secara instan tanpa hambatan.
         </p>
       </div>
 
-      <div class="bg-clay-card border border-clay-violet/50 px-5 py-4 rounded-2xl flex items-center gap-4 shadow-xl self-start md:self-auto relative overflow-hidden group">
-        <div class="absolute inset-0 bg-gradient-to-r from-clay-violet/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="w-10 h-10 rounded-xl bg-clay-violet/15 border border-clay-violet/30 flex items-center justify-center text-clay-violet shadow-inner">
-          <i data-lucide="blocks" class="w-5 h-5"></i>
+      <div class="bg-white border-[3px] border-ink px-5 py-4 rounded-2xl flex items-center gap-4 shadow-hard self-start md:self-auto">
+        <div class="w-11 h-11 rounded-xl bg-amber-300 border-[2.5px] border-ink flex items-center justify-center">
+          <i data-lucide="blocks" class="w-5 h-5 text-ink"></i>
         </div>
-        <div class="relative z-10">
-          <span class="block font-mono text-[8px] text-clay-sub tracking-widest font-black">Api tersedia</span>
-          <span id="api-counter-txt" class="text-base font-mono font-black text-clay-ink leading-none">... APIs</span>
+        <div>
+          <span class="block font-mono text-[8px] text-ink/50 tracking-widest font-bold uppercase">Api tersedia</span>
+          <span id="api-counter-txt" class="font-display text-base font-extrabold text-ink leading-none">... APIs</span>
         </div>
       </div>
     </div>
 
-    <div class="bg-clay-card border border-clay-violet/50 p-5 rounded-2xl flex flex-col gap-5 shadow-2xl relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-clay-violet/[0.02] to-transparent pointer-events-none"></div>
+    <div class="bg-white border-[3px] border-ink p-5 rounded-2xl flex flex-col gap-5 shadow-hard">
       <div class="relative">
-        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-clay-sub"></i>
-        <input type="text" id="playground-search" placeholder="Cari endpoint atau kata kunci (contoh: asupan, brat, sticker)..." class="w-full bg-[#2A2440]/90 border border-clay-violet hover:border-clay-violet/30 focus:border-clay-violet text-clay-ink text-xs font-mono rounded-xl pl-12 pr-4 py-3.5 focus:outline-none transition-all placeholder:text-clay-sub/70 shadow-inner focus:shadow-none">
+        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-ink/40"></i>
+        <input type="text" id="playground-search" placeholder="Cari endpoint atau kata kunci (contoh: asupan, brat, sticker)..." class="w-full bg-paper border-[2.5px] border-ink text-ink text-xs font-mono rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:shadow-hardSm transition-all placeholder:text-ink/40">
       </div>
 
       <div>
-        <span class="block font-mono text-[8px] text-clay-sub tracking-[0.2em] font-black mb-3">Kategori modul:</span>
+        <span class="block font-mono text-[9px] text-ink/50 tracking-[0.2em] font-bold uppercase mb-3">Kategori modul:</span>
         <div class="flex flex-wrap gap-2.5" id="category-chips">
-          <button onclick="filterCategory('ALL')" id="chip-all" class="category-chip text-[9px] font-mono font-black bg-clay-violet text-clay-bg px-4 py-2 rounded-xl transition-all duration-300 cursor-pointer tracking-wider shadow-sm">All</button>
+          <button onclick="filterCategory('ALL')" id="chip-all" class="category-chip text-[9px] font-mono font-bold bg-[#FF7A30] text-ink border-[2.5px] border-ink px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer tracking-wider shadow-hardSm">All</button>
         </div>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[250px]" id="apis-grid-container">
-      <div class="col-span-full flex flex-col items-center justify-center py-20 text-clay-sub font-mono text-xs gap-3">
+      <div class="col-span-full flex flex-col items-center justify-center py-20 text-ink/40 font-mono text-xs gap-3">
         <div class="relative w-10 h-10 flex items-center justify-center">
-          <div class="absolute inset-0 border-2 border-clay-violet/10 rounded-full animate-pulse"></div>
-          <div class="absolute inset-0 border-2 border-t-clay-violet rounded-full animate-spin"></div>
+          <div class="absolute inset-0 border-[3px] border-ink/10 rounded-full"></div>
+          <div class="absolute inset-0 border-[3px] border-t-[#FF7A30] rounded-full animate-spin"></div>
         </div>
         <span class="tracking-widest animate-pulse uppercase text-[10px] font-bold mt-2">Memuat daftar API Hub...</span>
       </div>
@@ -190,65 +144,75 @@
 
   </main>
 
-  <footer class="px-4 pb-6 pt-4 relative z-10">
-    <div class="max-w-6xl mx-auto clay !rounded-[32px] p-8 sm:p-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10 pb-10 border-b-2 border-dashed border-clay-violet/15">
+  <footer class="px-4 md:px-6 pb-8 relative z-10">
+    <div class="max-w-7xl mx-auto bg-white border-[3px] border-ink rounded-2xl md:rounded-3xl shadow-hard px-6 md:px-8 pt-10 pb-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-8 pb-8 border-b-[2.5px] border-ink/10">
 
         <div class="md:col-span-5 flex flex-col gap-4">
           <div class="flex items-center gap-3">
-            <img id="footer-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-9 h-9 rounded-xl object-cover clay !rounded-xl !p-0">
-            <span id="footer-brand-title" class="font-display font-bold text-clay-ink text-sm">Clutch Api</span>
+            <img id="footer-logo-img" src="https://cdn-alip.clutch.web.id/api/u/mr1qezqk.jpg" class="w-8 h-8 rounded-lg border-[2.5px] border-ink object-cover">
+            <span id="footer-brand-title" class="font-display font-bold text-ink uppercase tracking-wide text-sm">Clutch Api</span>
           </div>
-          <p class="text-xs text-clay-sub leading-relaxed max-w-sm">
-            Platform integrasi API yang ringan dan playful. Menghubungkan ide random kamu dengan eksekusi backend yang cepat, instan dari browser.
+          <p class="text-xs text-ink/60 leading-relaxed max-w-sm font-medium">
+            Platform integrasi API inovatif dengan kinerja modular yang andal. Menghubungkan imajinasi digital Anda dengan eksekusi kode backend mutakhir secara instan.
           </p>
-          <span class="text-[10px] font-mono text-clay-sub mt-1">
-            Dibuat dengan sepenuh clay oleh <b id="footer-creator" class="text-clay-ink">alip ai</b>
+          <span class="text-[11px] font-mono text-ink/50 mt-1">
+            Build with Craftsmanship by <b id="footer-creator" class="text-ink">alip ai</b>
           </span>
         </div>
 
         <div class="md:col-span-7 flex flex-col justify-between">
           <div>
-            <span class="block font-display text-sm text-clay-ink font-bold mb-4">Hubungi &amp; ikuti kami</span>
+            <span class="block font-mono text-[10px] text-ink font-bold tracking-widest uppercase mb-4">Hubungi & ikuti kami</span>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <a id="footer-wa" target="_blank" href="#" class="flex items-center gap-2 bg-clay-lime/20 hover:bg-clay-lime/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
-                <i data-lucide="message-square" class="w-4.5 h-4.5 text-clay-limeDark group-hover:scale-110 transition-transform"></i>
+              <a id="footer-wa" target="_blank" href="#" class="press flex items-center gap-2.5 bg-white border-[2.5px] border-ink p-2.5 rounded-xl shadow-hardSm text-xs">
+                <div class="w-8 h-8 rounded-lg bg-emerald-300 border-[2px] border-ink flex items-center justify-center shrink-0">
+                  <i data-lucide="message-square" class="w-4 h-4 text-ink"></i>
+                </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-clay-sub leading-none">WhatsApp</span>
-                  <span class="font-semibold text-[10px]">Chat Admin</span>
+                  <span class="font-mono text-[8px] text-ink/50 leading-none">WhatsApp</span>
+                  <span class="font-bold text-[10px] text-ink">Chat Admin</span>
                 </div>
               </a>
 
-              <a id="footer-tg" target="_blank" href="#" class="flex items-center gap-2 bg-clay-sky/20 hover:bg-clay-sky/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
-                <i data-lucide="send" class="w-4.5 h-4.5 text-clay-skyDark group-hover:scale-110 transition-transform"></i>
+              <a id="footer-tg" target="_blank" href="#" class="press flex items-center gap-2.5 bg-white border-[2.5px] border-ink p-2.5 rounded-xl shadow-hardSm text-xs">
+                <div class="w-8 h-8 rounded-lg bg-sky-300 border-[2px] border-ink flex items-center justify-center shrink-0">
+                  <i data-lucide="send" class="w-4 h-4 text-ink"></i>
+                </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-clay-sub leading-none">Telegram</span>
-                  <span class="font-semibold text-[10px]">Hubungi Telegram</span>
+                  <span class="font-mono text-[8px] text-ink/50 leading-none">Telegram</span>
+                  <span class="font-bold text-[10px] text-ink">Hubungi Telegram</span>
                 </div>
               </a>
 
-              <a id="footer-channel" target="_blank" href="#" class="flex items-center gap-2 bg-clay-violet/15 hover:bg-clay-violet/25 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
-                <i data-lucide="radio" class="w-4.5 h-4.5 text-clay-violet group-hover:scale-110 transition-transform"></i>
+              <a id="footer-channel" target="_blank" href="#" class="press flex items-center gap-2.5 bg-white border-[2.5px] border-ink p-2.5 rounded-xl shadow-hardSm text-xs">
+                <div class="w-8 h-8 rounded-lg bg-orange-300 border-[2px] border-ink flex items-center justify-center shrink-0">
+                  <i data-lucide="radio" class="w-4 h-4 text-ink"></i>
+                </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-clay-sub leading-none">Saluran WA</span>
-                  <span class="font-semibold text-[10px]">Join Channel</span>
+                  <span class="font-mono text-[8px] text-ink/50 leading-none">Saluran WA</span>
+                  <span class="font-bold text-[10px] text-ink">Join Channel</span>
                 </div>
               </a>
 
-              <a id="footer-ig" target="_blank" href="#" class="flex items-center gap-2 bg-clay-coral/20 hover:bg-clay-coral/30 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
-                <i data-lucide="instagram" class="w-4.5 h-4.5 text-clay-coralDark group-hover:scale-110 transition-transform"></i>
+              <a id="footer-ig" target="_blank" href="#" class="press flex items-center gap-2.5 bg-white border-[2.5px] border-ink p-2.5 rounded-xl shadow-hardSm text-xs">
+                <div class="w-8 h-8 rounded-lg bg-pink-300 border-[2px] border-ink flex items-center justify-center shrink-0">
+                  <i data-lucide="instagram" class="w-4 h-4 text-ink"></i>
+                </div>
                 <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-clay-sub leading-none">Instagram</span>
-                  <span class="font-semibold text-[10px]">Follow Updates</span>
+                  <span class="font-mono text-[8px] text-ink/50 leading-none">Instagram</span>
+                  <span class="font-bold text-[10px] text-ink">Follow Updates</span>
                 </div>
               </a>
 
-              <a id="footer-email" href="#" class="col-span-1 sm:col-span-2 flex items-center gap-2 bg-clay-sun/25 hover:bg-clay-sun/35 p-3 rounded-2xl text-xs transition-all group clay-inset text-clay-ink">
-                <i data-lucide="mail" class="w-4.5 h-4.5 text-clay-sunDark group-hover:scale-110 transition-transform"></i>
-                <div class="flex flex-col">
-                  <span class="font-mono text-[8px] text-clay-sub leading-none">Email Resmi</span>
-                  <span class="font-semibold text-[10px] truncate" id="footer-email-txt">admin@example.com</span>
+              <a id="footer-email" href="#" class="press col-span-1 sm:col-span-2 flex items-center gap-2.5 bg-white border-[2.5px] border-ink p-2.5 rounded-xl shadow-hardSm text-xs">
+                <div class="w-8 h-8 rounded-lg bg-amber-300 border-[2px] border-ink flex items-center justify-center shrink-0">
+                  <i data-lucide="mail" class="w-4 h-4 text-ink"></i>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-mono text-[8px] text-ink/50 leading-none">Email Resmi</span>
+                  <span class="font-bold text-[10px] text-ink truncate" id="footer-email-txt">admin@example.com</span>
                 </div>
               </a>
             </div>
@@ -257,16 +221,16 @@
 
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-clay-sub">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-ink/50">
         <div>
           <span>© 2026</span>
-          <span class="text-clay-violet font-bold">Clutch Api Hub</span>
+          <span class="text-[#FF7A30] font-bold uppercase">Clutch Api Hub</span>
           <span>• Hak Cipta Dilindungi.</span>
         </div>
         <div class="flex gap-4 font-bold">
-          <a href="/" class="hover:text-clay-violet transition-colors">Home</a>
-          <a href="/playground" class="text-clay-violet hover:text-clay-coral transition-colors">Playground</a>
-          <a href="/api" class="hover:text-clay-violet transition-colors">API Console</a>
+          <a href="/" class="hover:text-[#FF7A30] transition-colors">Home</a>
+          <a href="/playground" class="text-[#FF7A30]">Playground</a>
+          <a href="/api" class="hover:text-[#FF7A30] transition-colors">API Console</a>
         </div>
       </div>
     </div>
@@ -284,32 +248,32 @@
         document.getElementById('favicon').href = "/api/logo-proxy";
         const titleEl = document.getElementById('web-title');
         if (titleEl) {
-          titleEl.innerHTML = webName.replace(/\s+/g, ' <span class="text-clay-violet font-light">//</span> ');
+          titleEl.innerHTML = webName.replace(/\s+/g, ' <span class="text-[#FF7A30]">//</span> ');
         }
         document.getElementById('footer-creator').innerText = settings.creatorName || 'alip ai';
         document.getElementById('footer-brand-title').innerText = webName;
-        
+
         const logoImg = document.getElementById('nav-logo-img');
         if (logoImg) logoImg.src = "/api/logo-proxy";
-        
+
         const footerLogoImg = document.getElementById('footer-logo-img');
         if (footerLogoImg) footerLogoImg.src = "/api/logo-proxy";
 
         const footerWa = document.getElementById('footer-wa');
         if (footerWa) footerWa.href = settings.whatsappLink || '#';
-        
+
         const footerIg = document.getElementById('footer-ig');
         if (footerIg) footerIg.href = settings.instagramLink || '#';
-        
+
         const footerTg = document.getElementById('footer-tg');
         if (footerTg) footerTg.href = settings.telegramLink || '#';
-        
+
         const footerChannel = document.getElementById('footer-channel');
         if (footerChannel) footerChannel.href = settings.whatsappChannelLink || '#';
-        
+
         const footerEmail = document.getElementById('footer-email');
         if (footerEmail) footerEmail.href = settings.emailAddress ? `mailto:${settings.emailAddress}` : '#';
-        
+
         const footerEmailTxt = document.getElementById('footer-email-txt');
         if (footerEmailTxt) footerEmailTxt.innerText = settings.emailAddress || 'admin@example.com';
 
@@ -327,12 +291,15 @@
           allEndpoints = data.endpoints || {};
           document.getElementById('api-counter-txt').innerText = `${data.total || 0} APIs`;
 
+          const chipColors = ['bg-sky-200', 'bg-violet-200', 'bg-emerald-200', 'bg-amber-200', 'bg-pink-200', 'bg-orange-200'];
           const chipsContainer = document.getElementById('category-chips');
-          Object.keys(allEndpoints).forEach(cat => {
+          Object.keys(allEndpoints).forEach((cat, i) => {
             const btn = document.createElement('button');
-            btn.className = "category-chip text-[9px] font-mono font-bold bg-[#332A55] hover:bg-clay-violet/15 text-clay-ink/75 hover:text-clay-violet border border-clay-violet/60 px-4 py-2 rounded-xl transition-all duration-300 cursor-pointer tracking-wider";
+            const idleColor = chipColors[i % chipColors.length];
+            btn.className = `category-chip text-[9px] font-mono font-bold ${idleColor} hover:brightness-95 text-ink border-[2.5px] border-ink px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer tracking-wider shadow-hardSm`;
             btn.innerText = cat;
             btn.id = `chip-${cat.toLowerCase()}`;
+            btn.dataset.idleColor = idleColor;
             btn.onclick = () => filterCategory(cat);
             chipsContainer.appendChild(btn);
           });
@@ -351,9 +318,10 @@
       const chips = document.querySelectorAll('.category-chip');
       chips.forEach(chip => {
         if (chip.id === `chip-${cat.toLowerCase()}`) {
-          chip.className = "category-chip text-[9px] font-mono font-black bg-clay-violet text-clay-bg px-4 py-2 rounded-xl transition-all duration-300 cursor-pointer tracking-wider shadow-md";
+          chip.className = "category-chip text-[9px] font-mono font-bold bg-[#FF7A30] text-ink border-[2.5px] border-ink px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer tracking-wider shadow-hardSm";
         } else {
-          chip.className = "category-chip text-[9px] font-mono font-bold bg-[#332A55] hover:bg-clay-violet/15 text-clay-ink/75 hover:text-clay-violet border border-clay-violet/60 px-4 py-2 rounded-xl transition-all duration-300 cursor-pointer tracking-wider";
+          const idleColor = chip.dataset.idleColor || 'bg-white';
+          chip.className = `category-chip text-[9px] font-mono font-bold ${idleColor} hover:brightness-95 text-ink border-[2.5px] border-ink px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer tracking-wider shadow-hardSm`;
         }
       });
       renderApis();
@@ -369,47 +337,46 @@
       container.innerHTML = '';
 
       let renderCount = 0;
+      const badgeColors = ['bg-sky-200', 'bg-violet-200', 'bg-emerald-200', 'bg-amber-200', 'bg-pink-200', 'bg-orange-200'];
+      let colorIdx = 0;
 
       Object.keys(allEndpoints).forEach(category => {
         if (activeCategory !== 'ALL' && activeCategory !== category) return;
 
         const endpoints = allEndpoints[category];
-        const filtered = endpoints.filter(api => 
-          api.name.toLowerCase().includes(query) || 
-          api.desc.toLowerCase().includes(query) || 
+        const filtered = endpoints.filter(api =>
+          api.name.toLowerCase().includes(query) ||
+          api.desc.toLowerCase().includes(query) ||
           api.path.toLowerCase().includes(query)
         );
 
         filtered.forEach(api => {
           renderCount++;
+          const badgeColor = badgeColors[colorIdx % badgeColors.length];
+          colorIdx++;
           const card = document.createElement('div');
-          card.className = "bg-clay-card border border-clay-violet/50 hover:border-clay-violet/40 rounded-2xl p-6 shadow-lg hover:shadow-none hover:-translate-y-1.5 transition-all duration-350 flex flex-col justify-between group relative overflow-hidden";
-          
-          // Subtle hover gradient
-          const ambient = document.createElement('div');
-          ambient.className = "absolute -right-10 -top-10 w-24 h-24 blob-field opacity-0 group-hover:opacity-40 transition-opacity pointer-events-none";
-          card.appendChild(ambient);
+          card.className = "bg-white border-[3px] border-ink rounded-2xl p-6 shadow-hard hover:shadow-hardLg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between";
 
           const rawRoutePath = api.path.split('?')[0];
 
           card.innerHTML = `
-            <div class="relative z-10">
+            <div>
               <div class="flex items-center justify-between gap-2 mb-4">
-                <span class="text-[8px] font-mono font-black bg-[#332A55] text-clay-violet border border-clay-violet/20 px-2.5 py-1 rounded-md tracking-wider">${category}</span>
-                <span class="text-[8px] font-mono font-black bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md">GET</span>
+                <span class="text-[8px] font-mono font-bold ${badgeColor} text-ink border-[2px] border-ink px-2.5 py-1 rounded-md tracking-wider">${category}</span>
+                <span class="text-[8px] font-mono font-bold bg-emerald-200 text-ink border-[2px] border-ink px-2.5 py-1 rounded-md">GET</span>
               </div>
-              
-              <h3 class="font-mono font-black text-sm tracking-tight text-clay-ink mb-2 group-hover:text-clay-violet transition-colors">${api.name}</h3>
-              
-              <p class="text-xs text-clay-sub leading-relaxed mb-5 min-h-[40px] line-clamp-3 font-sans">${api.desc}</p>
+
+              <h3 class="font-display font-bold text-sm tracking-tight text-ink mb-2">${api.name}</h3>
+
+              <p class="text-xs text-ink/60 leading-relaxed mb-5 min-h-[40px] line-clamp-3 font-medium">${api.desc}</p>
             </div>
 
-            <div class="border-t border-clay-violet/30 pt-4 mt-2 relative z-10">
+            <div class="border-t-[2px] border-ink/10 pt-4 mt-2">
               <div class="flex items-center justify-between gap-4">
-                <code class="text-[9px] font-mono text-clay-sub truncate select-all hover:text-clay-ink/75 transition-colors" title="${rawRoutePath}">${rawRoutePath}</code>
-                <a href="/api?endpoint=${rawRoutePath}" class="flex-shrink-0 inline-flex items-center gap-1.5 bg-clay-violet/15 hover:bg-clay-violet border border-clay-violet/20 hover:border-clay-violet text-clay-violet hover:text-clay-bg font-mono font-black text-[9px] px-4 py-2.5 rounded-xl transition-all duration-300">
+                <code class="text-[9px] font-mono text-ink/50 truncate select-all" title="${rawRoutePath}">${rawRoutePath}</code>
+                <a href="/api?endpoint=${rawRoutePath}" class="press flex-shrink-0 inline-flex items-center gap-1.5 bg-[#FF7A30] border-[2.5px] border-ink text-ink font-mono font-bold text-[9px] px-4 py-2.5 rounded-xl shadow-hardSm">
                   <span>Get Api</span>
-                  <i data-lucide="chevron-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                  <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
             </div>
@@ -420,10 +387,10 @@
 
       if (renderCount === 0) {
         container.innerHTML = `
-          <div class="col-span-full flex flex-col items-center justify-center py-20 text-clay-sub font-mono text-xs gap-3">
-            <i data-lucide="alert-triangle" class="w-8 h-8 text-clay-sub animate-pulse"></i>
-            <span class="uppercase tracking-widest font-black text-[10px]">No matches found</span>
-            <span class="text-clay-sub font-sans">Tidak ada endpoint API yang cocok dengan pencarian Anda.</span>
+          <div class="col-span-full flex flex-col items-center justify-center py-20 text-ink/40 font-mono text-xs gap-3">
+            <i data-lucide="alert-triangle" class="w-8 h-8 text-ink/30"></i>
+            <span class="uppercase tracking-widest font-bold text-[10px]">No matches found</span>
+            <span class="text-ink/50 font-sans">Tidak ada endpoint API yang cocok dengan pencarian Anda.</span>
           </div>
         `;
         lucide.createIcons();
